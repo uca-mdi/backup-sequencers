@@ -42,4 +42,7 @@ echo "Preparing tranfer results => src:'${SRCRES}'; dst:'${DSTRES}'"
 # -a does not work due to windows permissions on NAS
 # --no-links for avoiding broken links
 # --prune-empty-dirs (e.g., "plugins.out/")
-rsync -rlDzmv --no-links --prune-empty-dirs --dry-run --delete-excluded --delete-during --exclude='*_tn_*' $SRCRES $DSTRES
+rsync -rlDzv --no-links --prune-empty-dirs --dry-run --delete-excluded --delete-during --exclude='*_tn_*' $SRCRES $DSTRES
+
+echo "Preparing tranfer plugins => src:'${SRCPLU}'; dst:'${DSTPLU}'"
+. backup_plugins.sh $SRCPLU $DSTPLU
