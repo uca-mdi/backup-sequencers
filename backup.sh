@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
+NOW=`date +%Y-%m-%d`
 WHO=""  # to change accordingly
 if [ "${WHO}" != "" ]; then
-    echo "Server name not set. Aborting."
+    echo "Server name not set. Aborting." > /tmp/backup_${NOW}.err
     exit 1
 fi
 
@@ -17,7 +18,6 @@ DSTARC=${DST}/archive
 DSTPLU=${DST}/plugins
 
 # SET UP
-NOW=`date +%Y-%m-%d`
 LOGFILE=/tmp/backup_${WHO}_${NOW}.log
 touch $LOGFILE
 
