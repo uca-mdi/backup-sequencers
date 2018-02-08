@@ -1,7 +1,5 @@
 # backup-sequencers
 
-remove --dry-run
-
 Utility to save data from servers to the NAS.
 
 ## Pre-requisites
@@ -20,3 +18,5 @@ on the plugin version (date).
 
 The `-a` option of `rsync` does not work, as `root` is used to write on the NAS.
 Ownership, groups and permissions on files are not saved for the very same reason.
+
+#### remove --dry-run (!!!)
