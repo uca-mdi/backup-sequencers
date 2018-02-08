@@ -47,7 +47,7 @@ echo "Preparing tranfer results => src:'${SRCRES}'; dst:'${DSTRES}'" >> $LOGFILE
 # -a does not work due to windows permissions on NAS
 # --no-links for avoiding broken links
 # --prune-empty-dirs (e.g., "plugins.out/")
-rsync -rlDzv --no-links --prune-empty-dirs --dry-run --delete-excluded --delete-during --exclude='*_tn_*' $SRCRES $DSTRES >> $LOGFILE
+rsync -rlDzv --prune-empty-dirs --dry-run --delete-excluded --delete-during --exclude='*_tn_*' $SRCRES $DSTRES >> $LOGFILE
 
 # Transfer plugins
 echo "Preparing tranfer plugins => src:'${SRCPLU}'; dst:'${DSTPLU}'" >> $LOGFILE
