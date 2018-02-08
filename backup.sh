@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 WHO=""  # to change accordingly
+if [ "${WHO}" != "" ]; then
+    echo "Server name not set. Aborting."
+    exit 1
+fi
 
 SRCRES=/results/analysis/output/Home
 SRCPLU=/results/plugins
