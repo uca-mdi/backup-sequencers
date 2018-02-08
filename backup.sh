@@ -2,7 +2,7 @@
 
 NOW=`date +%Y-%m-%d`
 WHO=""  # to change accordingly
-if [ "${WHO}" != "" ]; then
+if [ "${WHO}" == "" ]; then
     echo "Server name not set. Aborting." > /tmp/backup_${NOW}.err
     exit 1
 fi
