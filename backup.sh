@@ -57,7 +57,7 @@ rsync -rlDzv --prune-empty-dirs --dry-run --delete-excluded --delete-during --ex
 echo "Preparing tranfer plugins => src:'${SRCPLU}'; dst:'${DSTPLU}'" >> $LOGFILE
 # get the most recent
 CURRENT=`ls -tu $DSTPLU | head -1`
-if [ "${CURRENT}" != "" ]; then
+if [ "${CURRENT}" == "" ]; then
 	echo "first run on plugins" >> $LOGFILE
 	mkdir -p $DSTPLU/${NOW}
 	DST=$DSTPLU/${NOW}
