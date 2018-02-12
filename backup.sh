@@ -53,6 +53,9 @@ echo "Preparing tranfer results => src:'${SRCRES}'; dst:'${DSTRES}'" >> $LOGFILE
 # --prune-empty-dirs (e.g., "plugins.out/")
 rsync -rlDzv --prune-empty-dirs --dry-run --delete-excluded --delete-during --exclude='*_tn_*' $SRCRES/ $DSTRES >> $LOGFILE
 
+echo "Deleting empty directories on NAS"
+find ${DSTRES} -depth -type d -empty -delete
+
 # Transfer plugins
 echo "Preparing tranfer plugins => src:'${SRCPLU}'; dst:'${DSTPLU}'" >> $LOGFILE
 # get the most recent
