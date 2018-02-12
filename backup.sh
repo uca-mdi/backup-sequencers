@@ -51,7 +51,7 @@ echo "Preparing tranfer results => src:'${SRCRES}'; dst:'${DSTRES}'" >> $LOGFILE
 # -a does not work due to windows permissions on NAS
 # --no-links for avoiding broken links
 # --prune-empty-dirs (e.g., "plugins.out/")
-rsync -rlDzv --prune-empty-dirs --dry-run --delete-excluded --delete-during --exclude='*_tn_*' $SRCRES/ $DSTRES >> $LOGFILE
+rsync -rclDzv --prune-empty-dirs --dry-run --delete-excluded --delete-during --exclude='*_tn_*' $SRCRES/ $DSTRES >> $LOGFILE
 
 echo "Deleting empty directories on NAS"
 find ${DSTRES} -depth -type d -empty -delete
@@ -64,14 +64,14 @@ if [ "${CURRENT}" == "" ]; then
 	echo "first run on plugins" >> $LOGFILE
 	mkdir -p $DSTPLU/${NOW}
 	DST=$DSTPLU/${NOW}
-	rsync -rlDmvz --dry-run $SRCPLU $DST >> $LOGFILE
+	rsync -rclDmvz --dry-run $SRCPLU $DST >> $LOGFILE
 else
     check=`rsync -ain $SRCPLU $DSTPLU/$CURRENT`
     if [ "${check}" != "" ]; then
 	    echo "found modified plugins" >> $LOGFILE
 	    mkdir -p $DSTPLU/${NOW}
 	    DST=$DSTPLU/${NOW}
-	    rsync -rlDzmv --dry-run $SRCPLU $DST >> $LOGFILE
+	    rsync -rclDzmv --dry-run $SRCPLU $DST >> $LOGFILE
     else
 	    echo "no plugins updates" >> $LOGFILE
     fi
@@ -79,7 +79,7 @@ fi
 
 # Populate archive
 echo "Saving fastq, bam and vcf files on '${DSTARC}'" >> $LOGFILE
-rsync -rlDmzv --dry-run --include='*.fastq' --include=".bam" --include="*.vcf" --include='*/' --exclude='*' $DSTRES/ $DSTARC >> $LOGFILE
+rsync -rclDmzv --dry-run --include='*.fastq' --include=".bam" --include="*.vcf" --include='*/' --exclude='*' $DSTRES/ $DSTARC >> $LOGFILE
 array=($(find $DSTARC/* -type d -newerat $NOW))
 
 for folder in "${array[@]}"
