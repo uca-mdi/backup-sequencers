@@ -20,3 +20,6 @@ The `-a` option of `rsync` does not work, as `root` is used to write on the NAS.
 Ownership, groups and permissions on files are not saved for the very same reason.
 
 #### remove --dry-run (!!!)
+
+### Automatic configuration
+Run `./setup.sh <name>` to set the variables and remove the rsync option.
