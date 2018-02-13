@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCRIPT='./bkptest.sh'
+SCRIPT='./backup.sh'
 NAME=
 
 if [ -z "$1" ]; then
