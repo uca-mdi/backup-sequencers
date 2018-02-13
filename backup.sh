@@ -66,12 +66,12 @@ if [ "${CURRENT}" == "" ]; then
 	DST=$DSTPLU/${NOW}
 	rsync -rclDmvz --dry-run $SRCPLU $DST >> $LOGFILE
 else
-    check=`rsync -ain $SRCPLU $DSTPLU/$CURRENT`
+    check=`rsync -ain $SRCPLU/ $DSTPLU/$CURRENT`
     if [ "${check}" != "" ]; then
 	    echo "found modified plugins" >> $LOGFILE
 	    mkdir -p $DSTPLU/${NOW}
 	    DST=$DSTPLU/${NOW}
-	    rsync -rclDzmv --dry-run $SRCPLU $DST >> $LOGFILE
+	    rsync -rclDzmv --dry-run $SRCPLU/ $DST >> $LOGFILE
     else
 	    echo "no plugins updates" >> $LOGFILE
     fi
