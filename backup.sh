@@ -17,7 +17,7 @@ DSTRES=${DST}/results
 DSTARC=${DST}/archive
 DSTPLU=${DST}/plugins
 
-RSYNCOPTS="-rclDzv --ignore-existing --update --prune-empty-dirs --dry-run --delete-excluded --delete-during "
+RSYNCOPTS="-rclDzv --ignore-existing --update --prune-empty-dirs --itemize-changes --dry-run --delete-excluded --delete-during "
 # SET UP
 LOGFILE=/tmp/backup_${WHO}_${NOW}.log
 touch $LOGFILE
@@ -52,7 +52,7 @@ echo "Preparing tranfer results => src:'${SRCRES}'; dst:'${DSTRES}'" >> $LOGFILE
 # -a does not work due to windows permissions on NAS
 # --no-links for avoiding broken links
 # --prune-empty-dirs (e.g., "plugins.out/")
-rsync $RSYNCOPTS --dry-run --exclude='*_tn_*' $SRCRES/ $DSTRES >> $LOGFILE
+rsync $RSYNCOPTS --dry-run --exclude='*_tn_*' --exclude='*.dedup.bam' $SRCRES/ $DSTRES >> $LOGFILE
 
 
 echo "Deleting empty directories on NAS"
